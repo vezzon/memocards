@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWD}
+      - MONGO_DB=flashcards
+    networks:
+      - shared-network
+    volumes:
+      - ./mongo-db:/data/db
+
+  api:
+    container_name: api
+    restart: unless-stopped
+    environment:
+      - PORT=${PORT}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
+      - MONGODB=mongodb://${MONGO_USER}:${MONGO_PASSWD}@mongo
+      - NODE_ENV=${NODE_ENV}
+    build:
+      context: ./Flashcards
+    ports:
+      - 4000:4000
+    networks:
+      - shared-network
+    volumes:
+      - ./Flashcards:/app/api
+    depends_on:
+      - mongo
+
+  client:
+    container_name: client
+    restart: unless-stopped
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+    build:
+      context: ./flashcards-react
+      args:
+        - REACT_APP_API_URL=${REACT_APP_API_URL}
+    ports:
+      - 3000:3000
+    networks:
+      - shared-network
+    volumes:
+      - ./flashcards-react:/app/client
+    depends_on:
+      - api
+
+networks:
+  shared-network:

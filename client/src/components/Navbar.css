@@ -1,0 +1,46 @@
+.site-title {
+  font-size: 2rem;
+  font-family: 'Silkscreen', cursive;
+}
+
+.nav {
+  background-color: rgb(21, 32, 43);
+  border-bottom: 1px solid rgb(39, 72, 106);
+  color: whitesmoke;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+}
+
+.active {
+  background-color: #47b5ff;
+  color: #333 !important;
+  border-radius: 0.4em;
+}
+
+.nav li:hover {
+  background-color: rgb(100, 162, 233);
+  color: #333;
+  border-radius: 0.4em;
+}

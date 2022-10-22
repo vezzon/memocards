@@ -1,0 +1,9 @@
+.DS_Store
+/resource
+/resources
+*.csv
+.vscode
+.env
+node_modules
+logs
+.vscode
