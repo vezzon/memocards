@@ -1,10 +1,11 @@
 const express = require('express');
-const authController = require('../controllers/authController');
+const { login, logout, refresh } = require('../controllers/authController');
+const { use } = require('../utils/asyncHandler');
 
 const router = express.Router();
 
-router.post('/login', authController.login);
-router.post('/logout', authController.logout);
-router.get('/refresh', authController.refresh);
+router.post('/login', use(login));
+router.post('/logout', logout);
+router.get('/refresh', use(refresh));
 
 module.exports = router;

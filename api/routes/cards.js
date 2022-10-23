@@ -11,15 +11,15 @@ const {
   validateCreationRules,
   validateCardCreation,
 } = require('../middleware/validation/card');
-
+const { use } = require('../utils/asyncHandler');
 const router = express.Router();
 
 router.use(authorization);
 
-router.get('/:id', getOneCard);
-router.get('/', getAllCards);
-router.get('/users/:userId', getAllCardsByUser);
-router.post('/', validateCreationRules, validateCardCreation, createCard);
-router.delete('/:id', deleteCard);
+router.get('/:id', use(getOneCard));
+router.get('/', use(getAllCards));
+router.get('/users/:userId', use(getAllCardsByUser));
+router.post('/', validateCreationRules, validateCardCreation, use(createCard));
+router.delete('/:id', use(deleteCard));
 
 module.exports = router;

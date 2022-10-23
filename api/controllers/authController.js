@@ -12,32 +12,29 @@ const login = async (req, res) => {
   if (!email || !password)
     return res.status(400).json({ message: 'All fields are required' });
 
-  try {
-    const user = await userService.getUserByEmail(email);
+  const user = await userService.getUserByEmail(email);
 
-    if (!user) {
-      return res.status(400).json({ message: 'Invalid credentials' });
-    }
-    if (await bcrypt.compare(password, user.password)) {
-      const jwtData = { id: user.id, email: user.email };
-      const refreshToken = generateRefreshToken(jwtData);
+  if (!user) {
+    return res.status(400).json({ message: 'Invalid credentials' });
+  }
+  if (await bcrypt.compare(password, user.password)) {
+    const jwtData = { id: user.id, email: user.email };
+    const refreshToken = generateRefreshToken(jwtData);
 
-      res.cookie('jwt', refreshToken, {
+    res
+      .cookie('jwt', refreshToken, {
         httpOnly: true,
         secure: true,
         sameSite: 'None',
         maxAge: 7 * 24 * 60 * 60 * 1000,
-      });
-
-      res.status(200).json({
+      })
+      .status(200)
+      .json({
         id: user.id,
         token: generateAccessToken(jwtData),
       });
-    } else {
-      res.status(400).json({ message: 'Invalid credentials' });
-    }
-  } catch (error) {
-    res.status(400).json({ message: 'Something went wrong!' });
+  } else {
+    res.status(400).json({ message: 'Invalid credentials' });
   }
 };
 
@@ -55,16 +52,11 @@ const refresh = async (req, res) => {
 
       const jwtData = { id: user.id, email: user.email };
 
-      try {
-        const foundUser = userService.getUserByEmail(jwtData.email);
-        if (!foundUser)
-          return res.status(401).json({ message: 'Unauthorized' });
+      const foundUser = userService.getUserByEmail(jwtData.email);
+      if (!foundUser) return res.status(401).json({ message: 'Unauthorized' });
 
-        const token = generateAccessToken(jwtData);
-        res.status(200).json({ id: jwtData.id, token });
-      } catch (error) {
-        return res.sendStatus(500);
-      }
+      const token = generateAccessToken(jwtData);
+      res.status(200).json({ id: jwtData.id, token });
     }
   );
 };
@@ -72,12 +64,13 @@ const refresh = async (req, res) => {
 const logout = (req, res) => {
   const cookies = req.cookies;
   if (!cookies?.jwt) return res.sendStatus(204);
-  res.clearCookie('jwt', {
-    httpOnly: true,
-    sameSite: 'None',
-    secure: true,
-  });
-  res.json({ message: 'Cookie cleared' });
+  res
+    .clearCookie('jwt', {
+      httpOnly: true,
+      sameSite: 'None',
+      secure: true,
+    })
+    .json({ message: 'Cookie cleared' });
 };
 
 module.exports = {

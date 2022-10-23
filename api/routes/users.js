@@ -5,9 +5,10 @@ const {
   validateUserSignup,
 } = require('../middleware/validation/user');
 const router = express.Router();
+const { use } = require('../utils/asyncHandler');
 
-// router.get('/', userController.getAllUsers);
-// router.get('/:id', userController.getUserById);
-router.post('/signup', validateRules, validateUserSignup, signup);
+// router.get('/', use(getAllUsers));
+// router.get('/:id', use(getUserById));
+router.post('/signup', validateRules, validateUserSignup, use(signup));
 
 module.exports = router;
