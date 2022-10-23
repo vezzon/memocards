@@ -30,7 +30,11 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 
 app.use(cors(corsOptions));
-app.use(morgan('dev', { stream: logStream }));
+if (app.get('env') === 'development') {
+  app.use(morgan('dev'));
+} else {
+  app.use(morgan('combined', { stream: logStream }));
+}
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
