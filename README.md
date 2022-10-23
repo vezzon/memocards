@@ -1,0 +1,3 @@
+Flashcards project in JS!
+
+More info soon...
