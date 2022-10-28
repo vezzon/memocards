@@ -10,7 +10,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWD}
       - MONGO_DB=flashcards
     networks:
-      - shared-network
+      - cards-network
     volumes:
       - ./mongo-db:/data/db
 
@@ -21,16 +21,16 @@ services:
       - PORT=${PORT}
       - JWT_SECRET=${JWT_SECRET}
       - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
-      - MONGODB=mongodb://${MONGO_USER}:${MONGO_PASSWD}@mongo
+      - MONGODB=mongodb://${MONGO_USER}:${MONGO_PASSWD}@mongo/flashcards
       - NODE_ENV=${NODE_ENV}
     build:
-      context: ./Flashcards
+      context: ./api
     ports:
       - 4000:4000
     networks:
-      - shared-network
+      - cards-network
     volumes:
-      - ./Flashcards:/app/api
+      - ./api:/app/api
     depends_on:
       - mongo
 
@@ -40,17 +40,17 @@ services:
     environment:
       - REACT_APP_API_URL=${REACT_APP_API_URL}
     build:
-      context: ./flashcards-react
+      context: ./client
       args:
         - REACT_APP_API_URL=${REACT_APP_API_URL}
     ports:
       - 3000:3000
     networks:
-      - shared-network
+      - cards-network
     volumes:
-      - ./flashcards-react:/app/client
+      - ./client:/app/client
     depends_on:
       - api
 
 networks:
-  shared-network:
+  cards-network:

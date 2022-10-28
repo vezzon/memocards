@@ -37,7 +37,6 @@ if (app.get('env') === 'development') {
 }
 app.use(cookieParser());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/cards', cardsRouter);
 app.use('/api/users', usersRouter);
