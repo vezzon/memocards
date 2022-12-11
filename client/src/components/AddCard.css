@@ -1,0 +1,25 @@
+.addcard_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.addcard__input {
+  padding: 5px;
+}
+
+.addcard label {
+  padding: 5px;
+}
+
+.addcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 350px;
+  max-width: 400px;
+  margin: 0.5rem auto;
+  padding: 10px;
+  background-color: #38444d;
+  border-radius: 0.3em;
+}

@@ -1,0 +1,24 @@
+.cardlist {
+  margin: 1rem;
+}
+
+.cardlist__container {
+  width: 100%;
+  min-width: 350px;
+  max-width: 400px;
+  margin: 1.5rem auto;
+  padding: 2rem;
+  background-color: #38444d;
+  border-radius: 0.3em;
+}
+
+.cardlist_item {
+  color: black;
+  background-color: cornflowerblue;
+  list-style: none;
+  padding: 0.2rem;
+}
+
+.cardlist_item:nth-child(odd) {
+  background-color: darkgrey;
+}
