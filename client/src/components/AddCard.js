@@ -7,7 +7,7 @@ import useAuth from '../hooks/useAuth';
 const AddCard = () => {
   const addFrontRef = useRef();
   const axiosPrivate = useAxiosPrivate();
-  const { cards, refresh } = useCards();
+  const { refresh } = useCards();
   const { userId } = useAuth();
   const [front, setFront] = useState('');
   const [back, setBack] = useState('');

@@ -1,0 +1,26 @@
+.csv__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 350px;
+  max-width: 400px;
+  margin: 20px auto;
+  border-radius: 0.3em;
+  padding: 10px;
+  background-color: #38444d;
+}
+
+.csv__card {
+  display: flex;
+  justify-content: center;
+}
+
+.csv__filename {
+  margin: 1rem;
+  text-align: center;
+}
+
+.csv p {
+  margin: 5px;
+}

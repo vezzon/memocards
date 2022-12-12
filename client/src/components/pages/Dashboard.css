@@ -9,30 +9,3 @@
 .dashboard__header {
   margin: 1rem;
 }
-
-.dashboard__csv {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-width: 350px;
-  max-width: 400px;
-  margin: 20px auto;
-  border-radius: 0.3em;
-  padding: 10px;
-  background-color: #38444d;
-}
-
-.dashboard__csv__card {
-  display: flex;
-  justify-content: center;
-}
-
-.dashboard__csv__filename {
-  margin: 1rem;
-  text-align: center;
-}
-
-.dashboard__csv p {
-  margin: 5px;
-}
