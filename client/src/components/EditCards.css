@@ -1,0 +1,27 @@
+.editCards__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 350px;
+  max-width: 400px;
+  margin: 20px auto;
+  border-radius: 0.3em;
+  padding: 10px;
+  background-color: #38444d;
+}
+
+.editCards__list {
+  margin: 1rem;
+}
+
+.editCards__list_item {
+  color: black;
+  background-color: cornflowerblue;
+  list-style: none;
+  padding: 0.2rem;
+}
+
+.editCards__list_item:nth-child(odd) {
+  background-color: darkgrey;
+}
