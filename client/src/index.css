@@ -12,9 +12,23 @@ html {
   padding: 0;
 }
 
+h2 {
+  padding: 0.3rem;
+}
+
+:root {
+  --color1: #404258;
+  --color2: #474e68;
+  --color3: #50577a;
+  --color4: #6b728e;
+  --delete: #af0404;
+  --light-text: #fff;
+  --border: #000;
+}
+
 body {
-  background: #1d2a35;
-  color: whitesmoke;
+  background: var(--color2);
+  color: var(--light-text);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -23,16 +37,29 @@ body {
   padding: 0.7em 2em;
   border: none;
   border-radius: 0.3rem;
-  color: whitesmoke;
-  background-color: #47b5ff;
+  color: (var(--light-text));
+  background-color: var(--color4);
 }
 
 .btn:hover {
   cursor: pointer;
-  background-color: rgb(100, 162, 233);
+  background-color: var(--color1);
 }
 
 #root {
   height: 100vh;
   width: 100%;
+}
+
+.flex__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 350px;
+  max-width: 400px;
+  margin: 8px auto;
+  border-radius: 0.3em;
+  padding: 10px;
+  background-color: var(--color3);
 }

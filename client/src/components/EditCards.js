@@ -1,18 +1,41 @@
 import useCards from '../hooks/useCards';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import './EditCards.css';
+import { useEffect } from 'react';
+import { RiDeleteBin2Line } from 'react-icons/ri';
 
 const EditCards = () => {
-  const { cards } = useCards();
+  const { cards, refresh } = useCards();
+  const axiosPrivate = useAxiosPrivate();
+
+  useEffect(() => {}, [refresh]);
+
+  const deleteCardHandler = async _id => {
+    try {
+      await axiosPrivate.delete(`cards/${_id}`);
+      refresh(prev => !prev);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="editCards__container">
+    <div className="flex__container">
       <h2>Edit Cards</h2>
-      <ol className="cardlist">
+      <div className="editCards__list">
         {cards.map(card => (
-          <li className="cardlist_item" key={card.front}>
-            {card.front} : {card.back}
-          </li>
+          <div className="editCards__list_item">
+            <div className="editCards__front">{card.front}</div>
+            <div className="editCards__back">{card.back}</div>
+            <div
+              className="editCards__delete"
+              onClick={() => deleteCardHandler(card._id)}
+            >
+              <RiDeleteBin2Line />
+            </div>
+          </div>
         ))}
-      </ol>
+      </div>
     </div>
   );
 };

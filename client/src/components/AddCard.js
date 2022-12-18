@@ -48,8 +48,8 @@ const AddCard = () => {
   };
 
   return (
-    <div className="addcard">
-      <h2>Add card components</h2>
+    <div className="flex__container">
+      <h2>Add card</h2>
       <form
         className="addcard_form"
         onSubmit={addCardHandler}

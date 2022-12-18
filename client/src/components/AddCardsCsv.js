@@ -47,8 +47,8 @@ const AddCardsCsv = () => {
 
   return (
     <>
-      <div className="csv__container">
-        <h2>Add cards from CSV comp</h2>
+      <div className="flex__container">
+        <h2>Add cards from CSV</h2>
         <p>Format is lang1,lang2,front,back</p>
         <p>This is default CSV file from google translate</p>
         <CSVReader

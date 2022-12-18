@@ -11,7 +11,7 @@
   max-width: 400px;
   padding: 3rem 2rem;
   margin: 1.5rem auto;
-  background-color: #38444d;
+  background-color: var(--color3);
   color: whitesmoke;
   border-radius: 0.5em;
 }

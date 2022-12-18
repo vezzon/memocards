@@ -11,7 +11,7 @@ const corsOptions = {
   },
   credentials: true,
   optionsSuccessStatus: 200, // typically it's 204
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 };
 
 module.exports = corsOptions;

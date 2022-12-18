@@ -4,9 +4,9 @@
 }
 
 .nav {
-  background-color: rgb(21, 32, 43);
-  border-bottom: 1px solid rgb(39, 72, 106);
-  color: whitesmoke;
+  background-color: var(--color1);
+  border-bottom: 1px solid var(--border);
+  color: var(--light-text);
   font-family: 'Roboto', sans-serif;
   display: flex;
   justify-content: space-between;
@@ -34,13 +34,11 @@
 }
 
 .active {
-  background-color: #47b5ff;
-  color: #333 !important;
+  background-color: var(--color3);
   border-radius: 0.4em;
 }
 
 .nav li:hover {
-  background-color: rgb(100, 162, 233);
-  color: #333;
+  background-color: var(--color4);
   border-radius: 0.4em;
 }

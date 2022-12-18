@@ -39,7 +39,7 @@ const createCard = async (front, back, userId) => {
 
 const deleteCard = async id => {
   try {
-    await Card.findOneAndDelete({ id });
+    await Card.findByIdAndDelete(id);
   } catch (error) {
     console.log(error);
   }

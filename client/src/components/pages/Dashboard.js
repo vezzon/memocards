@@ -10,9 +10,9 @@ const Dashboard = () => {
   return (
     <div className="dashboard__container">
       <h2 className="dashboard__header">Flashcards total: {cards.length} </h2>
-      <EditCards />
       <AddCard />
       <AddCardsCsv />
+      <EditCards />
     </div>
   );
 };

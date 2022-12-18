@@ -27,12 +27,11 @@ const createCard = async (req, res) => {
 const deleteCard = async (req, res) => {
   const id = req.params.id;
   const card = await cardsService.getCardById(id);
-  if (card) {
-    await cardsService.deleteCard(id);
-    res.status(204).json({ message: 'Card deleted' });
-  } else {
-    res.status(404).json({ message: 'Not found' });
+  if (!card) {
+    return res.status(404).json({ message: 'Not found' });
   }
+  await cardsService.deleteCard(id);
+  res.status(204).json({ message: 'Card deleted' });
 };
 
 module.exports = {

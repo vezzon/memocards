@@ -2,7 +2,7 @@ import './CardsList.css';
 
 const CardsList = ({ cards }) => {
   return (
-    <div className="cardlist__container">
+    <div className="flex__container">
       <h3>Cards from CSV</h3>
       <ol className="cardlist">
         {cards.map(card => (
