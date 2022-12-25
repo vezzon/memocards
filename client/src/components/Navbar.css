@@ -1,4 +1,4 @@
-.site-title {
+.logo {
   font-size: 2rem;
   font-family: 'Silkscreen', cursive;
 }
@@ -10,7 +10,6 @@
   font-family: 'Roboto', sans-serif;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   align-items: stretch;
   gap: 2rem;
   padding: 0 1rem;
@@ -21,7 +20,8 @@
   margin: 0;
   list-style: none;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .nav a {
@@ -30,15 +30,26 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0.25rem;
 }
 
 .active {
-  background-color: var(--color3);
-  border-radius: 0.4em;
+  text-decoration: underline !important;
+  text-underline-offset: 0.5rem;
+}
+
+.nav li {
+  transition: 0.7s ease;
 }
 
 .nav li:hover {
-  background-color: var(--color4);
-  border-radius: 0.4em;
+  color: var(--color4);
+}
+
+@media only screen and (max-width: 655px) {
+  .nav {
+    align-items: center;
+  }
+  .nav li {
+    visibility: hidden;
+  }
 }

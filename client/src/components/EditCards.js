@@ -21,7 +21,7 @@ const EditCards = () => {
 
   return (
     <div className="flex__container">
-      <h2>Edit Cards</h2>
+      <h2>Cards</h2>
       <div className="editCards__list">
         {cards.map(card => (
           <div className="editCards__list_item">
