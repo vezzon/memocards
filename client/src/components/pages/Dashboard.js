@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard__container">
-      <h2 className="dashboard__header">Flashcards total: {cards.length} </h2>
+      <h2 className="dashboard__header">Cards total: {cards.length} </h2>
       <div className="dashbord__options">
         <button onClick={() => dispatch({ type: 'addCard' })} className="btn">
           Add Card
