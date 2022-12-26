@@ -41,7 +41,8 @@ nav li {
 }
 
 nav li:hover {
-  color: var(--color4);
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+  color: var(--delete);
 }
 
 #mobile {
@@ -52,15 +53,17 @@ nav li:hover {
   #navbar {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     position: fixed;
+    z-index: 1;
     list-style: none;
     top: 42px;
     right: 0px;
     width: 300px;
     height: 100vh;
     background-color: var(--color1);
+    border-left: 1px solid var(--border);
     gap: 0.5rem;
     transition: 0.3s ease-in-out;
   }
@@ -70,7 +73,7 @@ nav li:hover {
   }
 
   #navbar li {
-    margin-bottom: 1.5rem;
+    margin: 1rem;
   }
 
   #mobile {
