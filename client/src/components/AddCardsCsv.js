@@ -4,7 +4,7 @@ import { useState } from 'react';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import useAuth from '../hooks/useAuth';
 import useCards from '../hooks/useCards';
-import CardsList from './CardsList';
+import EditCards from './EditCards';
 
 const AddCardsCsv = () => {
   const { CSVReader } = useCSVReader();
@@ -19,6 +19,12 @@ const AddCardsCsv = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const deleteCardHandler = card => {
+    const index = newCards.indexOf(card);
+    newCards.splice(index, 1);
+    setNewCards(newCards);
   };
 
   const exstractCSV = file => {
@@ -67,18 +73,24 @@ const AddCardsCsv = () => {
                 <button className="btn" type="button" {...getRootProps()}>
                   Browse file
                 </button>
-                <button className="btn" onClick={clearNewCardsHandler}>
-                  Remove
-                </button>
-                <button className="btn" onClick={addNewCardsHandler}>
-                  Add cards
-                </button>
+                {newCards.length > 0 && (
+                  <button className="btn" onClick={clearNewCardsHandler}>
+                    Remove
+                  </button>
+                )}
+                {newCards.length > 0 && (
+                  <button className="btn" onClick={addNewCardsHandler}>
+                    Add cards
+                  </button>
+                )}
               </div>
               <ProgressBar />
             </>
           )}
         </CSVReader>
-        {newCards.length > 0 && <CardsList cards={newCards} />}
+        {newCards.length > 0 && (
+          <EditCards cards={newCards} deleteCardHandler={deleteCardHandler} />
+        )}
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import AddCard from '../AddCard';
 import AddCardsCsv from '../AddCardsCsv';
 import EditCards from '../EditCards';
 import { useReducer } from 'react';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const initialState = { addCard: false, addCardsCsv: false, editCards: false };
 
@@ -21,8 +22,18 @@ const reducer = (state, action) => {
 };
 
 const Dashboard = () => {
-  const { cards } = useCards();
+  const { cards, refresh } = useCards();
   const [state, dispatch] = useReducer(reducer, initialState);
+  const axiosPrivate = useAxiosPrivate();
+
+  const deleteCardHandler = async card => {
+    try {
+      await axiosPrivate.delete(`cards/${card._id}`);
+      refresh(prev => !prev);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="dashboard__container">
@@ -43,7 +54,9 @@ const Dashboard = () => {
       </div>
       {state.addCard && <AddCard />}
       {state.addCardsCsv && <AddCardsCsv />}
-      {state.editCards && <EditCards />}
+      {state.editCards && (
+        <EditCards cards={cards} deleteCardHandler={deleteCardHandler} />
+      )}
     </div>
   );
 };

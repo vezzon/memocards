@@ -4,6 +4,7 @@ import './Flashcard.css';
 
 const Flashcard = () => {
   const [flip, setFlip] = useState(false);
+  const [rev, setRev] = useState(false);
   const [index, change] = useState(0);
   const [card, setCard] = useState({ front: 'Front', back: 'Back' });
   const { cards } = useContext(CardsContext);
@@ -11,8 +12,10 @@ const Flashcard = () => {
   useEffect(() => {
     if (cards.length === 0) return;
 
+    setFlip(rev);
+
     setCard(cards[index]);
-  }, [index, cards]);
+  }, [index, cards, rev]);
 
   const next = () => {
     if (index + 1 === cards.length) return;
@@ -29,6 +32,9 @@ const Flashcard = () => {
   return (
     <>
       <div className="card-container">
+        <button className="btn" onClick={() => setRev(!rev)}>
+          Reverse sides
+        </button>
         <div
           className={`card ${flip ? 'flip' : ''}`}
           onClick={() => setFlip(!flip)}
