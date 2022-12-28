@@ -21,10 +21,10 @@ const AddCardsCsv = () => {
     }
   };
 
-  const deleteCardHandler = card => {
-    const index = newCards.indexOf(card);
-    newCards.splice(index, 1);
-    setNewCards(newCards);
+  const deleteCardHandler = cardToDelete => {
+    const removedArr = [...newCards].filter(card => card !== cardToDelete);
+
+    setNewCards(removedArr);
   };
 
   const exstractCSV = file => {
