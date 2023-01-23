@@ -1,5 +1,3 @@
-import './CardsList.css';
-
 const CardsList = ({ cards }) => {
   return (
     <div className="flex__container">

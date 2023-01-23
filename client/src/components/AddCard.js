@@ -1,8 +1,8 @@
-import '../components/AddCard.css';
 import { useState, useRef, useEffect } from 'react';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import useCards from '../hooks/useCards';
 import useAuth from '../hooks/useAuth';
+import Button from './Button';
 
 const AddCard = () => {
   const addFrontRef = useRef();
@@ -48,37 +48,37 @@ const AddCard = () => {
   };
 
   return (
-    <div className="flex__container">
-      <h2>Add card</h2>
+    <div className="mx-auto mt-4 flex flex-col items-center rounded-md border border-gray-600 bg-slate-700 p-4">
+      <h2 className="p-2">Add card</h2>
       <form
-        className="addcard_form"
+        className="flex flex-col items-center"
         onSubmit={addCardHandler}
         autoComplete="off"
       >
-        <div className="addcard__input">
-          <label htmlFor="front">Front</label>
+        <div>
           <input
+            className="my-3 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 leading-tight text-gray-700 focus:border-indigo-500 focus:bg-white focus:outline-none"
             ref={addFrontRef}
             type="text"
             name="front"
+            placeholder="Front side"
             value={front}
             onChange={frontHandler}
             required
           />
         </div>
-        <div className="addcard__input">
-          <label htmlFor="back">Back</label>
+        <div>
           <input
+            className="my-3 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 leading-tight text-gray-700 focus:border-indigo-500 focus:bg-white focus:outline-none"
             type="text"
             name="back"
+            placeholder="Back side"
             value={back}
             onChange={backHandler}
             required
           />
         </div>
-        <button className="btn" type="submit">
-          Add card
-        </button>
+        <Button text={'Add card'} type="submit" />
       </form>
     </div>
   );

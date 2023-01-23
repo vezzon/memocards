@@ -1,59 +1,156 @@
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import './Navbar.css';
 import { useState } from 'react';
+import useClickOutside from '../hooks/useClickOutside';
 
 const Navbar = () => {
   const { isLoggedIn, logout } = useAuth();
-  const [clicked, setClicked] = useState(false);
+  const [nav, setNav] = useState(false);
+  const domNode = useClickOutside(() => {
+    setNav(false);
+  });
 
   const handleClick = () => {
-    setClicked(!clicked);
+    setNav(!nav);
   };
 
   return (
     <header>
       <nav>
-        <Link to={'/'} className="logo">
-          Memocards
-        </Link>
-        <div>
-          <ul id="navbar" className={clicked ? '' : 'mobile'}>
+        <div className="flex items-center justify-between px-4 text-slate-200 ">
+          <Link to={'/'} className="logo px-2 hover:text-emerald-400">
+            Memocards
+          </Link>
+          <div className="md:hidden" onClick={handleClick}>
+            {nav ? <FaTimes /> : <FaBars />}
+          </div>
+          {/* DESKTOP NAV  */}
+          <div className="hidden md:flex">
+            <ul className="flex list-none items-center justify-between gap-4">
+              {isLoggedIn && (
+                <li>
+                  <NavLink
+                    className="flex items-center font-bold no-underline hover:text-emerald-400"
+                    to={'/dashboard'}
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              )}
+              {isLoggedIn && (
+                <li>
+                  <NavLink
+                    className="flex items-center font-bold no-underline hover:text-emerald-400"
+                    to={'/flashcard'}
+                  >
+                    Flashcard
+                  </NavLink>
+                </li>
+              )}
+              {!isLoggedIn && (
+                <li>
+                  <NavLink
+                    className="flex items-center font-bold no-underline hover:text-emerald-400"
+                    to={'/signup'}
+                  >
+                    Signup
+                  </NavLink>
+                </li>
+              )}
+              {!isLoggedIn && (
+                <li>
+                  <NavLink
+                    className="flex items-center font-bold no-underline hover:text-emerald-400"
+                    to={'/login'}
+                  >
+                    Login
+                  </NavLink>
+                </li>
+              )}
+              {isLoggedIn && (
+                <li>
+                  <Link
+                    className="flex items-center font-bold no-underline hover:text-emerald-400"
+                    onClick={() => logout()}
+                    to={'/login'}
+                  >
+                    Logout
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+        {/* MOBILE NAV  */}
+        <div ref={domNode} className="md:hidden">
+          <ul
+            className={
+              !nav
+                ? 'hidden'
+                : 'fixed right-0 w-2/4 bg-[radial-gradient(145.05%_100%_at_50%_0%,#1D2B41_0%,#0B1627_57.38%,#142133_88.16%)] text-center text-slate-300 shadow-2xl'
+            }
+          >
             <li>
-              <NavLink to={'/'}>Home</NavLink>
+              <NavLink
+                className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                to={'/'}
+              >
+                Home
+              </NavLink>
             </li>
             {isLoggedIn && (
               <li>
-                <NavLink to={'/dashboard'}>Dashboard</NavLink>
+                <NavLink
+                  className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                  to={'/dashboard'}
+                >
+                  Dashboard
+                </NavLink>
               </li>
             )}
             {isLoggedIn && (
               <li>
-                <NavLink to={'/flashcard'}>Flashcard</NavLink>
+                <NavLink
+                  className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                  to={'/flashcard'}
+                >
+                  Flashcard
+                </NavLink>
               </li>
             )}
             {!isLoggedIn && (
               <li>
-                <NavLink to={'/signup'}>Signup</NavLink>
+                <NavLink
+                  className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                  to={'/signup'}
+                >
+                  Signup
+                </NavLink>
               </li>
             )}
             {!isLoggedIn && (
               <li>
-                <NavLink to={'/login'}>Login</NavLink>
+                <NavLink
+                  className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                  to={'/login'}
+                >
+                  Login
+                </NavLink>
               </li>
             )}
             {isLoggedIn && (
               <li>
-                <Link onClick={() => logout()} to={'/login'}>
+                <Link
+                  className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                  onClick={() => logout()}
+                  to={'/login'}
+                >
                   Logout
                 </Link>
               </li>
             )}
           </ul>
-        </div>
-        <div id="mobile" onClick={handleClick}>
-          {clicked ? <FaTimes /> : <FaBars />}
         </div>
       </nav>
     </header>

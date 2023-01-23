@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import CardsContext from '../../context/CardsContext';
-import './Flashcard.css';
+import Button from '../Button';
 
 const Flashcard = () => {
   const [flip, setFlip] = useState(false);
@@ -31,25 +31,19 @@ const Flashcard = () => {
 
   return (
     <>
-      <div className="card-container">
-        <button className="btn" onClick={() => setRev(!rev)}>
-          Reverse sides
-        </button>
+      <div className="mx-auto flex w-4/5 flex-col items-center">
+        <Button text={'Reverse sides'} clickHandler={() => setRev(!rev)} />
         <div
-          className={`card ${flip ? 'flip' : ''}`}
+          // className={`card ${flip ? 'flip' : ''}`}
+          className="flex h-96 w-full items-center justify-center rounded-md bg-slate-300 p-4 text-2xl font-bold text-indigo-400"
           onClick={() => setFlip(!flip)}
         >
-          <div className="front">{card.front}</div>
-          <div className="back">{card.back}</div>
+          <div>{!flip ? card.front : card.back}</div>
         </div>
       </div>
-      <div className="buttons">
-        <button className="btn" onClick={prev}>
-          Prev
-        </button>
-        <button className="btn" onClick={next}>
-          Next
-        </button>
+      <div className="flex justify-center">
+        <Button text={'Prev'} clickHandler={prev} />
+        <Button text={'Next'} clickHandler={next} />
       </div>
     </>
   );
