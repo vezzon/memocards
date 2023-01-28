@@ -87,8 +87,8 @@ const Navbar = () => {
           <ul
             className={
               !nav
-                ? 'hidden'
-                : 'fixed right-0 w-2/4 bg-[radial-gradient(145.05%_100%_at_50%_0%,#1D2B41_0%,#0B1627_57.38%,#142133_88.16%)] text-center text-slate-300 shadow-2xl'
+                ? 'fixed right-[-100%] duration-500 ease-in-out'
+                : 'fixed right-0 w-2/4 bg-[radial-gradient(145.05%_100%_at_50%_0%,#1D2B41_0%,#0B1627_57.38%,#142133_88.16%)] text-center text-slate-300 shadow-2xl duration-500 ease-in-out'
             }
           >
             <li>
