@@ -27,6 +27,8 @@ const AddCardsCsv = () => {
     setNewCards(removedArr);
   };
 
+  const editCardHandler = cardToEdit => {};
+
   const exstractCSV = file => {
     const { data } = file;
     let cardsArr = [];
@@ -92,7 +94,11 @@ const AddCardsCsv = () => {
           )}
         </CSVReader>
         {newCards.length > 0 && (
-          <EditCards cards={newCards} deleteCardHandler={deleteCardHandler} />
+          <EditCards
+            cards={newCards}
+            deleteCardHandler={deleteCardHandler}
+            editCardHandler={editCardHandler}
+          />
         )}
       </div>
     </>

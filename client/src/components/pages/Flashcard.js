@@ -34,8 +34,7 @@ const Flashcard = () => {
       <div className="mx-auto flex w-4/5 flex-col items-center">
         <Button text={'Reverse sides'} clickHandler={() => setRev(!rev)} />
         <div
-          // className={`card ${flip ? 'flip' : ''}`}
-          className="flex h-96 w-full items-center justify-center rounded-md bg-slate-300 p-4 text-2xl font-bold text-indigo-400"
+          className="flex h-96 w-full items-center justify-center rounded-md bg-slate-300 p-4 text-xl font-bold text-indigo-400 sm:text-2xl"
           onClick={() => setFlip(!flip)}
         >
           <div>{!flip ? card.front : card.back}</div>

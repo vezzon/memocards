@@ -35,10 +35,21 @@ const Dashboard = () => {
     }
   };
 
+  const editCardRequest = async card => {
+    try {
+      await axiosPrivate.put(`cards/${card._id}`);
+      refresh(prev => !prev);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editCardHandler = async card => {};
+
   return (
-    <div className="m-auto flex flex-col items-center">
+    <div className="mx-auto flex w-4/5 flex-col items-center">
       <h2 className="p-4 text-xl font-bold text-indigo-300">
-        Cards total: {cards.length}{' '}
+        Cards total: {cards.length}
       </h2>
       <div className="flex items-center rounded-md border border-gray-600 bg-slate-700 p-4">
         <Button
@@ -57,7 +68,11 @@ const Dashboard = () => {
       {state.addCard && <AddCard />}
       {state.addCardsCsv && <AddCardsCsv />}
       {state.editCards && (
-        <EditCards cards={cards} deleteCardHandler={deleteCardHandler} />
+        <EditCards
+          cards={cards}
+          deleteCardHandler={deleteCardHandler}
+          editCardHandler={editCardHandler}
+        />
       )}
     </div>
   );

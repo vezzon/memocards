@@ -1,28 +1,33 @@
-import { RiDeleteBin2Line } from 'react-icons/ri';
-import { v4 as uuid } from 'uuid';
+import { useState } from 'react';
+import CardContainer from './CardContainer';
 
-const EditCards = ({ cards, deleteCardHandler }) => {
+const EditCards = ({ cards, deleteCardHandler, editCardHandler }) => {
+  const [query, setQuery] = useState('');
+
+  const keys = ['front', 'back'];
+
+  const search = data => {
+    return data.filter(item =>
+      keys.some(key => item[key].toLowerCase().includes(query))
+    );
+  };
+
   return (
     <div className="flex flex-col">
-      <div className="mx-auto mt-4 flex flex-col items-center rounded-md border border-gray-600 bg-slate-700 p-4">
-        <h2 className="p-4 text-center font-bold text-indigo-300">Cards</h2>
-        {cards.map(card => (
-          <div className="m-2 flex w-full px-3 py-1" key={uuid()}>
-            <div className="w-full">
-              <div className="bg-slate-300 px-2 text-left text-slate-900">
-                {card.front}
-              </div>
-              <div className="bg-slate-900 px-2 text-left text-slate-100">
-                {card.back}
-              </div>
-            </div>
-            <div
-              className="flex items-center bg-red-700 px-2 text-slate-300 hover:bg-red-500 hover:text-slate-900"
-              onClick={() => deleteCardHandler(card)}
-            >
-              <RiDeleteBin2Line />
-            </div>
-          </div>
+      <div className="mx-auto mt-4 flex w-4/5 flex-col items-center rounded-md border border-gray-600 bg-slate-700 p-4">
+        <h2 className="p-4 text-center font-bold text-indigo-200">Cards</h2>
+        <input
+          type="text"
+          placeholder="Search cards..."
+          className="m-4 w-4/5 appearance-none rounded border-2 border-gray-200 bg-slate-300 p-4 leading-tight text-indigo-700 placeholder:text-slate-500 focus:border-indigo-500 focus:bg-slate-200 focus:outline-none"
+          onChange={e => setQuery(e.target.value)}
+        />
+        {search(cards).map(card => (
+          <CardContainer
+            card={card}
+            deleteCardHandler={deleteCardHandler}
+            editCardHandler={editCardHandler}
+          />
         ))}
       </div>
     </div>

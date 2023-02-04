@@ -88,21 +88,21 @@ const Navbar = () => {
             className={
               !nav
                 ? 'fixed right-[-100%] duration-500 ease-in-out'
-                : 'fixed right-0 w-2/4 bg-[radial-gradient(145.05%_100%_at_50%_0%,#1D2B41_0%,#0B1627_57.38%,#142133_88.16%)] text-center text-slate-300 shadow-2xl duration-500 ease-in-out'
+                : 'fixed right-0 w-3/4 bg-[radial-gradient(145.05%_100%_at_50%_0%,#1D2B41_0%,#0B1627_57.38%,#142133_88.16%)] text-center text-slate-300 shadow-2xl duration-500 ease-in-out'
             }
           >
-            <li>
+            <li onClick={handleClick}>
               <NavLink
-                className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                className="flex h-full justify-center border-b border-slate-700 p-2 font-bold no-underline"
                 to={'/'}
               >
                 Home
               </NavLink>
             </li>
             {isLoggedIn && (
-              <li>
+              <li onClick={handleClick}>
                 <NavLink
-                  className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                  className="flex h-full justify-center border-b border-slate-700 p-2 font-bold no-underline"
                   to={'/dashboard'}
                 >
                   Dashboard
@@ -110,9 +110,9 @@ const Navbar = () => {
               </li>
             )}
             {isLoggedIn && (
-              <li>
+              <li onClick={handleClick}>
                 <NavLink
-                  className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                  className="flex h-full justify-center border-b border-slate-700 p-2 font-bold no-underline"
                   to={'/flashcard'}
                 >
                   Flashcard
@@ -120,9 +120,9 @@ const Navbar = () => {
               </li>
             )}
             {!isLoggedIn && (
-              <li>
+              <li onClick={handleClick}>
                 <NavLink
-                  className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                  className="flex h-full justify-center border-b border-slate-700 p-2 font-bold no-underline"
                   to={'/signup'}
                 >
                   Signup
@@ -130,9 +130,9 @@ const Navbar = () => {
               </li>
             )}
             {!isLoggedIn && (
-              <li>
+              <li onClick={handleClick}>
                 <NavLink
-                  className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                  className="flex h-full justify-center border-b border-slate-700 p-2 font-bold no-underline"
                   to={'/login'}
                 >
                   Login
@@ -140,9 +140,9 @@ const Navbar = () => {
               </li>
             )}
             {isLoggedIn && (
-              <li>
+              <li onClick={handleClick}>
                 <Link
-                  className="flex h-full items-center border-b border-slate-700 p-2 font-bold no-underline"
+                  className="flex h-full justify-center border-b border-slate-700 p-2 font-bold no-underline"
                   onClick={() => logout()}
                   to={'/login'}
                 >
