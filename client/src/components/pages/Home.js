@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <div className="mx-auto flex h-auto w-4/5 flex-col items-center p-4 ">
+    <div className="mx-auto flex h-auto w-4/5 flex-col items-center p-4 md:text-xl ">
       <h1 className="py-4 font-bold">Welcome!</h1>
       <p className="my-3 w-[80%]">
         This site was build with intent to help you use translated words saved

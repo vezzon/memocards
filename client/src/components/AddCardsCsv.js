@@ -83,24 +83,26 @@ const AddCardsCsv = () => {
                   Browse file
                 </button>
                 {newCards.length > 0 && (
-                  <Button text="Remove" clickHandler={clearNewCardsHandler} />
+                  <Button clickHandler={clearNewCardsHandler}>
+                    Remove file
+                  </Button>
                 )}
                 {newCards.length > 0 && (
-                  <Button text="Add cards" clickHandler={addNewCardsHandler} />
+                  <Button clickHandler={addNewCardsHandler}>Add cards</Button>
                 )}
               </div>
               <ProgressBar />
             </>
           )}
         </CSVReader>
-        {newCards.length > 0 && (
-          <EditCards
-            cards={newCards}
-            deleteCardHandler={deleteCardHandler}
-            editCardHandler={editCardHandler}
-          />
-        )}
       </div>
+      {newCards.length > 0 && (
+        <EditCards
+          cards={newCards}
+          deleteCardHandler={deleteCardHandler}
+          editCardHandler={editCardHandler}
+        />
+      )}
     </>
   );
 };

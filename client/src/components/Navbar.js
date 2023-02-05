@@ -27,7 +27,7 @@ const Navbar = () => {
           </div>
           {/* DESKTOP NAV  */}
           <div className="hidden md:flex">
-            <ul className="flex list-none items-center justify-between gap-4">
+            <ul className="flex list-none items-center justify-between gap-4 text-xl">
               {isLoggedIn && (
                 <li>
                   <NavLink

@@ -78,7 +78,7 @@ const AddCard = () => {
             required
           />
         </div>
-        <Button text={'Add card'} type="submit" />
+        <Button type="submit">Add card</Button>
       </form>
     </div>
   );

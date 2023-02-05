@@ -55,7 +55,7 @@ const SignForm = ({
           />
         </div>
         {err && <p className="text-red-700">{errMsg}</p>}
-        <Button type="submit" text={submitButton} />
+        <Button type="submit">{submitButton}</Button>
         <p className="mt-4 block rounded-full bg-slate-700/75 py-1 px-4 text-center text-sm text-slate-300">
           {text}
           <span className="font-semibold text-white">

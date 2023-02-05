@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RiDeleteBin2Line, RiEdit2Line } from 'react-icons/ri';
 import { v4 as uuid } from 'uuid';
+import EditCardModal from './EditCardModal';
 
 const CardContainer = ({ card, deleteCardHandler, editCardHandler }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="m-2 flex w-11/12 px-3 py-1" key={uuid()}>
       <div className="w-full">
@@ -21,10 +23,16 @@ const CardContainer = ({ card, deleteCardHandler, editCardHandler }) => {
           </div>
           <div
             className="m-1  rounded-xl bg-indigo-600  p-2 text-slate-300 hover:bg-indigo-400 hover:text-slate-900"
-            onClick={() => editCardHandler(card)}
+            onClick={() => setIsModalOpen(true)}
           >
             <RiEdit2Line />
           </div>
+          <EditCardModal
+            open={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            editCardHandler={editCardHandler}
+            card={card}
+          />
         </div>
       </div>
     </div>

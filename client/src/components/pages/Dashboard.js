@@ -44,7 +44,9 @@ const Dashboard = () => {
     }
   };
 
-  const editCardHandler = async card => {};
+  const editCardHandler = async card => {
+    console.log(`edit card handler ${card.front}`);
+  };
 
   return (
     <div className="mx-auto flex w-4/5 flex-col items-center">
@@ -52,18 +54,15 @@ const Dashboard = () => {
         Cards total: {cards.length}
       </h2>
       <div className="flex items-center rounded-md border border-gray-600 bg-slate-700 p-4">
-        <Button
-          text={'Add card'}
-          clickHandler={() => dispatch({ type: 'addCard' })}
-        />
-        <Button
-          text="Add cards CSV"
-          clickHandler={() => dispatch({ type: 'addCardsCsv' })}
-        />
-        <Button
-          text="Edit cards"
-          clickHandler={() => dispatch({ type: 'editCards' })}
-        />
+        <Button clickHandler={() => dispatch({ type: 'addCard' })}>
+          Add card
+        </Button>
+        <Button clickHandler={() => dispatch({ type: 'addCardsCsv' })}>
+          Add cards CSV
+        </Button>
+        <Button clickHandler={() => dispatch({ type: 'editCards' })}>
+          Edit cards
+        </Button>
       </div>
       {state.addCard && <AddCard />}
       {state.addCardsCsv && <AddCardsCsv />}
