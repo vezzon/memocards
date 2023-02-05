@@ -24,6 +24,11 @@ const createCard = async (req, res) => {
   res.status(201).send(req.body);
 };
 
+const updateCard = async (req, res) => {
+  await cardsService.updateCard(req.params.id, req.body.front, req.body.back);
+  res.status(201).send(req.body);
+};
+
 const deleteCard = async (req, res) => {
   const id = req.params.id;
   const card = await cardsService.getCardById(id);
@@ -39,5 +44,6 @@ module.exports = {
   getAllCards,
   getAllCardsByUser,
   createCard,
+  updateCard,
   deleteCard,
 };

@@ -37,6 +37,15 @@ const createCard = async (front, back, userId) => {
   }
 };
 
+const updateCard = async (_id, front, back) => {
+  try {
+    // const card = await Card.findOne({ _id });
+    await Card.updateOne({ _id }, { front, back });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const deleteCard = async id => {
   try {
     await Card.findByIdAndDelete(id);
@@ -50,5 +59,6 @@ module.exports = {
   getAllCards,
   getAllCardsByUser,
   createCard,
+  updateCard,
   deleteCard,
 };
