@@ -14,7 +14,7 @@ const EditCards = ({ cards, deleteCardHandler, editCardHandler }) => {
 
   return (
     <div className="flex flex-col">
-      <div className="mx-auto mt-4 flex w-4/5 flex-col items-center rounded-md border border-gray-600 bg-slate-700 p-4">
+      <div className="mx-auto my-4 flex w-full flex-col items-center rounded-md border border-gray-600 bg-slate-700 p-4">
         <h2 className="p-4 text-center font-bold text-indigo-200">Cards</h2>
         <input
           type="text"

@@ -35,20 +35,7 @@ const Dashboard = () => {
     }
   };
 
-  const editCardRequest = async card => {
-    try {
-      await axiosPrivate.put(`cards/${card._id}`);
-      refresh(prev => !prev);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const editCardHandler = async (card, newCard) => {
-    console.log(`edit card handler`);
-    console.log(`Old card front ${card.front}`);
-    console.log(`New card front ${newCard.front}`);
-
     try {
       await axiosPrivate.put(`cards/${card._id}`, newCard);
       refresh(prev => !prev);

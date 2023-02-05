@@ -27,7 +27,11 @@ const AddCardsCsv = () => {
     setNewCards(removedArr);
   };
 
-  const editCardHandler = cardToEdit => {};
+  const editCardHandler = (card, editCard) => {
+    const index = newCards.findIndex(c => c === card);
+    newCards[index].front = editCard.front;
+    newCards[index].back = editCard.back;
+  };
 
   const exstractCSV = file => {
     const { data } = file;
@@ -59,7 +63,7 @@ const AddCardsCsv = () => {
         <h2 className="p-2 font-bold text-indigo-300">Add cards from CSV</h2>
         <p className="text-sm">Format is lang1,lang2,front,back</p>
         <p className="text-sm">
-          This is default CSV file from google translate
+          This is default CSV format from Google Translate
         </p>
         <CSVReader
           onUploadAccepted={results => {
@@ -73,7 +77,7 @@ const AddCardsCsv = () => {
                   {acceptedFile && acceptedFile.name}
                 </div>
               )}
-              <div>
+              <div className="flex flex-col sm:flex-row">
                 {/* <Button {...getRootProps()} text="Browse file" type="button" /> // TODO: why this won't work */}
                 <button
                   className="m-4 rounded-md bg-indigo-500 py-2 px-4 text-sm font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none"

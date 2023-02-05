@@ -37,7 +37,12 @@ const EditCardModal = ({ open, onClose, editCardHandler, card }) => {
         </div>
         <div className="mt-4 flex">
           <Button clickHandler={onClose}>Close</Button>
-          <Button clickHandler={() => editCardHandler(card, { front, back })}>
+          <Button
+            clickHandler={() => {
+              editCardHandler(card, { front, back });
+              onClose();
+            }}
+          >
             Save
           </Button>
         </div>
