@@ -19,13 +19,24 @@ const getAllCardsByUser = async (req, res) => {
   res.json(cards);
 };
 
+const getAllUserCardsForLearning = async (req, res) => {
+  const cards = await cardsService.getAllUserCardsForLearning(
+    req.params.userId
+  );
+  res.json(cards);
+};
+
 const createCard = async (req, res) => {
   await cardsService.createCard(req.body.front, req.body.back, req.body.userId);
   res.status(201).send(req.body);
 };
 
 const updateCard = async (req, res) => {
-  await cardsService.updateCard(req.params.id, req.body.front, req.body.back);
+  console.log(req.body);
+  const cardId = req.params.id;
+  const card = req.body;
+  await cardsService.updateCard(cardId, card);
+  // await cardsService.updateCard(req.params.id, req.body.front, req.body.back);
   res.status(201).send(req.body);
 };
 
@@ -43,6 +54,7 @@ module.exports = {
   getOneCard,
   getAllCards,
   getAllCardsByUser,
+  getAllUserCardsForLearning,
   createCard,
   updateCard,
   deleteCard,

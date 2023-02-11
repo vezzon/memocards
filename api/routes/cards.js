@@ -3,6 +3,7 @@ const {
   getOneCard,
   getAllCards,
   getAllCardsByUser,
+  getAllUserCardsForLearning,
   createCard,
   updateCard,
   deleteCard,
@@ -22,6 +23,7 @@ router.use(authorization);
 router.get('/:id', use(getOneCard));
 router.get('/', use(getAllCards));
 router.get('/users/:userId', use(getAllCardsByUser));
+router.get('/users/learning/:userId', use(getAllUserCardsForLearning));
 router.post('/', validateCreationRules, validateCardCreation, use(createCard));
 router.put('/:id', validateUpdateRules, validateCardUpdate, use(updateCard));
 router.delete('/:id', use(deleteCard));

@@ -1,38 +1,54 @@
-import { useState, useEffect, useContext } from 'react';
-import CardsContext from '../../context/CardsContext';
+import { useState, useEffect } from 'react';
+import useCards from '../../hooks/useCards';
 import Button from '../Button';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const Flashcard = () => {
   const [flip, setFlip] = useState(false);
-  const [rev, setRev] = useState(false);
-  const [index, change] = useState(0);
+  const [reverseCard, setReverseCard] = useState(false);
+  const [index, setIndex] = useState(0);
   const [card, setCard] = useState({ front: 'Front', back: 'Back' });
-  const { cards } = useContext(CardsContext);
+  const { cardsToLearn, refresh } = useCards();
+  const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
-    if (cards.length === 0) return;
+    if (cardsToLearn.length === 0) return;
 
-    setFlip(rev);
+    setFlip(reverseCard);
+    console.log(cardsToLearn);
 
-    setCard(cards[index]);
-  }, [index, cards, rev]);
+    setCard(cardsToLearn[index]);
+  }, [index, cardsToLearn, reverseCard]);
 
-  const next = () => {
-    if (index + 1 === cards.length) return;
-    setFlip(false);
-    change(index => index + 1);
+  const editCardRequest = async card => {
+    try {
+      await axiosPrivate.put(`cards/${card._id}`, card);
+      refresh(prev => !prev);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const prev = () => {
-    if (index === 0) return;
+  const move = () => {
+    if (index + 1 === cardsToLearn.length) return;
     setFlip(false);
-    change(index => index - 1);
+    setIndex(index => index + 1);
+    const currentCard = { ...card, passed: (card.passed += 1) };
+    editCardRequest(currentCard);
+  };
+
+  const repeat = () => {
+    setFlip(false);
+    const currentCard = { ...card, passed: 0 };
+    editCardRequest(currentCard);
   };
 
   return (
     <>
       <div className="mx-auto flex w-4/5 flex-col items-center">
-        <Button clickHandler={() => setRev(!rev)}>Reverse sides</Button>
+        <Button clickHandler={() => setReverseCard(!reverseCard)}>
+          Reverse sides
+        </Button>
         <div
           className="flex h-96 w-full items-center justify-center rounded-md bg-slate-300 p-4 text-xl font-bold text-indigo-400 sm:text-2xl"
           onClick={() => setFlip(!flip)}
@@ -41,8 +57,8 @@ const Flashcard = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <Button clickHandler={prev}>Prev</Button>
-        <Button clickHandler={next}>Next</Button>
+        <Button clickHandler={repeat}>Repeat</Button>
+        <Button clickHandler={move}>Move forward</Button>
       </div>
     </>
   );

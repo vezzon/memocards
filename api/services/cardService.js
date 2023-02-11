@@ -29,6 +29,32 @@ const getAllCardsByUser = async userId => {
   }
 };
 
+const addDays = (date, days) => {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result.toISOString();
+};
+
+const getAllUserCardsForLearning = async userId => {
+  try {
+    const today = new Date().toISOString();
+
+    const userCards = await getAllCardsByUser(userId);
+
+    const cards = userCards.filter(c => {
+      if (c.passed === 0) return c;
+
+      const dateForRepetitionAfterPass = addDays(c.updatedAt, c.passed);
+
+      if (dateForRepetitionAfterPass <= today) return c;
+    });
+
+    return cards;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const createCard = async (front, back, userId) => {
   try {
     await Card.create({ front, back, userId });
@@ -37,10 +63,10 @@ const createCard = async (front, back, userId) => {
   }
 };
 
-const updateCard = async (_id, front, back) => {
+const updateCard = async (_id, card) => {
   try {
     // const card = await Card.findOne({ _id });
-    await Card.updateOne({ _id }, { front, back });
+    await Card.updateOne({ _id }, { ...card });
   } catch (error) {
     console.log(error);
   }
@@ -58,6 +84,7 @@ module.exports = {
   getCardById,
   getAllCards,
   getAllCardsByUser,
+  getAllUserCardsForLearning,
   createCard,
   updateCard,
   deleteCard,
