@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import CardContainer from './CardContainer';
+import { v4 as uuid } from 'uuid';
 
 const EditCards = ({ cards, deleteCardHandler, editCardHandler }) => {
   const [query, setQuery] = useState('');
@@ -13,7 +14,7 @@ const EditCards = ({ cards, deleteCardHandler, editCardHandler }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex w-full flex-col sm:w-4/5">
       <div className="mx-auto my-4 flex w-full flex-col items-center rounded-md border border-gray-600 bg-slate-700 p-4">
         <h2 className="p-4 text-center font-bold text-indigo-200">Cards</h2>
         <input
@@ -24,6 +25,7 @@ const EditCards = ({ cards, deleteCardHandler, editCardHandler }) => {
         />
         {search(cards).map(card => (
           <CardContainer
+            key={card.id ? card.id : uuid()}
             card={card}
             deleteCardHandler={deleteCardHandler}
             editCardHandler={editCardHandler}

@@ -8,14 +8,14 @@ const Flashcard = () => {
   const [reverseCard, setReverseCard] = useState(false);
   const [index, setIndex] = useState(0);
   const [card, setCard] = useState({ front: 'Front', back: 'Back' });
-  const { cardsToLearn, refresh } = useCards();
+  const { cardsToLearn, setRefresh } = useCards();
   const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     if (cardsToLearn.length === 0) return;
 
     setFlip(reverseCard);
-    console.log(cardsToLearn);
+    console.log(cardsToLearn); // For debugging
 
     setCard(cardsToLearn[index]);
   }, [index, cardsToLearn, reverseCard]);
@@ -23,7 +23,7 @@ const Flashcard = () => {
   const editCardRequest = async card => {
     try {
       await axiosPrivate.put(`cards/${card._id}`, card);
-      refresh(prev => !prev);
+      setRefresh(prev => !prev);
     } catch (error) {
       console.log(error);
     }
@@ -39,6 +39,8 @@ const Flashcard = () => {
 
   const repeat = () => {
     setFlip(false);
+    // TODO: Move this card to end of the cards
+    setIndex(index => index + 1);
     const currentCard = { ...card, passed: 0 };
     editCardRequest(currentCard);
   };

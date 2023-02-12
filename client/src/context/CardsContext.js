@@ -40,7 +40,7 @@ export const CardsProvider = ({ children }) => {
   const contextValue = {
     cards,
     cardsToLearn,
-    refresh: setRefresh,
+    setRefresh,
   };
 
   return (

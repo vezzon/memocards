@@ -11,7 +11,7 @@ const AddCardsCsv = () => {
   const [newCards, setNewCards] = useState([]);
   const axiosPrivate = useAxiosPrivate();
   const { userId } = useAuth();
-  const { refresh } = useCards();
+  const { setRefresh } = useCards();
 
   const createCardReq = async card => {
     try {
@@ -54,7 +54,7 @@ const AddCardsCsv = () => {
       createCardReq(card);
     });
     setNewCards([]);
-    refresh(prev => !prev);
+    setRefresh(prev => !prev);
   };
 
   return (

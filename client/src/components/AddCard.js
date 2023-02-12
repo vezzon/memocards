@@ -7,7 +7,7 @@ import Button from './Button';
 const AddCard = () => {
   const addFrontRef = useRef();
   const axiosPrivate = useAxiosPrivate();
-  const { refresh } = useCards();
+  const { setRefresh } = useCards();
   const { userId } = useAuth();
   const [front, setFront] = useState('');
   const [back, setBack] = useState('');
@@ -39,7 +39,7 @@ const AddCard = () => {
 
     try {
       createCardReq(card);
-      refresh(prev => !prev);
+      setRefresh(prev => !prev);
       setFront('');
       setBack('');
     } catch (error) {

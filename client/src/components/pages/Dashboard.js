@@ -22,14 +22,14 @@ const reducer = (state, action) => {
 };
 
 const Dashboard = () => {
-  const { cards, refresh } = useCards();
+  const { cards, setRefresh } = useCards();
   const [state, dispatch] = useReducer(reducer, initialState);
   const axiosPrivate = useAxiosPrivate();
 
   const deleteCardHandler = async card => {
     try {
       await axiosPrivate.delete(`cards/${card._id}`);
-      refresh(prev => !prev);
+      setRefresh(prev => !prev);
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +38,7 @@ const Dashboard = () => {
   const editCardHandler = async (card, newCard) => {
     try {
       await axiosPrivate.put(`cards/${card._id}`, newCard);
-      refresh(prev => !prev);
+      setRefresh(prev => !prev);
     } catch (error) {
       console.log(error);
     }

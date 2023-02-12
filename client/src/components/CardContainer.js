@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { RiDeleteBin2Line, RiEdit2Line } from 'react-icons/ri';
-import { v4 as uuid } from 'uuid';
 import EditCardModal from './EditCardModal';
 
 const CardContainer = ({ card, deleteCardHandler, editCardHandler }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <div className="m-2 flex w-11/12 px-3 py-1" key={uuid()}>
+    <div className="m-2 flex w-11/12 px-3 py-1">
       <div className="w-full">
         <div className="rounded-tl-xl rounded-tr-xl bg-slate-300 p-2 text-left text-slate-900">
           {card.front}
